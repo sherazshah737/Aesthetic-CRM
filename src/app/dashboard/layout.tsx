@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Toaster } from "sonner";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { BottomNav } from "@/components/dashboard/bottom-nav";
@@ -11,9 +12,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Suspense fallback={<div className="min-h-dvh" aria-busy="true" />}>
-      <DashboardShell>{children}</DashboardShell>
-    </Suspense>
+    <>
+      <Suspense fallback={<div className="min-h-dvh" aria-busy="true" />}>
+        <DashboardShell>{children}</DashboardShell>
+      </Suspense>
+      <Toaster position="top-center" richColors closeButton />
+    </>
   );
 }
 
